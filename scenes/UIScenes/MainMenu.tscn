@@ -1,0 +1,116 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://assets/UI/buttons/blue_button05.png" type="Texture" id=1]
+[ext_resource path="res://assets/UI/buttons/blue_button03.png" type="Texture" id=2]
+[ext_resource path="res://assets/UI/art/background.png" type="Texture" id=3]
+[ext_resource path="res://resources/fonts/default-font.tres" type="DynamicFont" id=4]
+
+[node name="MainMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="background" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 3 )
+expand = true
+
+[node name="margin" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_right = 50
+custom_constants/margin_top = 50
+custom_constants/margin_left = 50
+custom_constants/margin_bottom = 50
+
+[node name="vb" type="VBoxContainer" parent="margin"]
+margin_left = 730.0
+margin_top = 50.0
+margin_right = 1230.0
+margin_bottom = 670.0
+rect_min_size = Vector2( 500, 0 )
+size_flags_horizontal = 8
+custom_constants/separation = 35
+alignment = 1
+
+[node name="NewGame" type="TextureButton" parent="margin/vb"]
+margin_left = 75.0
+margin_top = 75.0
+margin_right = 425.0
+margin_bottom = 150.0
+rect_min_size = Vector2( 350, 75 )
+size_flags_horizontal = 4
+texture_normal = ExtResource( 2 )
+texture_pressed = ExtResource( 1 )
+expand = true
+
+[node name="label" type="Label" parent="margin/vb/NewGame"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = ExtResource( 4 )
+text = "New Game"
+align = 1
+valign = 1
+
+[node name="Settings" type="TextureButton" parent="margin/vb"]
+margin_left = 75.0
+margin_top = 185.0
+margin_right = 425.0
+margin_bottom = 260.0
+rect_min_size = Vector2( 350, 75 )
+size_flags_horizontal = 4
+texture_normal = ExtResource( 2 )
+texture_pressed = ExtResource( 1 )
+expand = true
+
+[node name="label" type="Label" parent="margin/vb/Settings"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = ExtResource( 4 )
+text = "Settings"
+align = 1
+valign = 1
+
+[node name="About" type="TextureButton" parent="margin/vb"]
+margin_left = 75.0
+margin_top = 295.0
+margin_right = 425.0
+margin_bottom = 370.0
+rect_min_size = Vector2( 350, 75 )
+size_flags_horizontal = 4
+texture_normal = ExtResource( 2 )
+texture_pressed = ExtResource( 1 )
+expand = true
+
+[node name="label" type="Label" parent="margin/vb/About"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = ExtResource( 4 )
+text = "About"
+align = 1
+valign = 1
+
+[node name="Spacer" type="Control" parent="margin/vb"]
+margin_top = 405.0
+margin_right = 500.0
+margin_bottom = 435.0
+rect_min_size = Vector2( 0, 30 )
+
+[node name="Quit" type="TextureButton" parent="margin/vb"]
+margin_left = 75.0
+margin_top = 470.0
+margin_right = 425.0
+margin_bottom = 545.0
+rect_min_size = Vector2( 350, 75 )
+size_flags_horizontal = 4
+texture_normal = ExtResource( 2 )
+texture_pressed = ExtResource( 1 )
+expand = true
+
+[node name="label" type="Label" parent="margin/vb/Quit"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = ExtResource( 4 )
+text = "Quit"
+align = 1
+valign = 1
