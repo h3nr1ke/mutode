@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://scenes/maps/Map1.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/towers/towerDefense_tile249.png" type="Texture" id=2]
@@ -9,6 +9,8 @@
 [ext_resource path="res://assets/icons/pause.png" type="Texture" id=7]
 [ext_resource path="res://assets/icons/right.png" type="Texture" id=8]
 [ext_resource path="res://assets/icons/fastForward.png" type="Texture" id=9]
+[ext_resource path="res://assets/UI/HPbar.jpg" type="Texture" id=10]
+[ext_resource path="res://assets/icons/home.png" type="Texture" id=11]
 
 [node name="GameScene" type="Node2D"]
 script = ExtResource( 5 )
@@ -114,6 +116,64 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 texture_normal = ExtResource( 9 )
 expand = true
+
+[node name="InfoBar" type="ColorRect" parent="UI"]
+self_modulate = Color( 0, 0, 0, 0.470588 )
+anchor_right = 1.0
+rect_min_size = Vector2( 0, 60 )
+
+[node name="H" type="HBoxContainer" parent="UI/InfoBar"]
+anchor_right = 1.0
+margin_bottom = 60.0
+
+[node name="Symbol" type="Label" parent="UI/InfoBar/H"]
+margin_right = 120.0
+margin_bottom = 60.0
+rect_min_size = Vector2( 120, 60 )
+text = "$ "
+align = 2
+valign = 1
+
+[node name="Money" type="Label" parent="UI/InfoBar/H"]
+margin_left = 124.0
+margin_right = 244.0
+margin_bottom = 60.0
+rect_min_size = Vector2( 120, 60 )
+text = "9999999"
+align = 2
+valign = 1
+
+[node name="Icon" type="TextureRect" parent="UI/InfoBar/H"]
+margin_left = 772.0
+margin_top = 5.0
+margin_right = 822.0
+margin_bottom = 55.0
+size_flags_horizontal = 10
+size_flags_vertical = 4
+texture = ExtResource( 11 )
+
+[node name="HP" type="TextureProgress" parent="UI/InfoBar/H"]
+margin_left = 826.0
+margin_top = 18.0
+margin_right = 1226.0
+margin_bottom = 42.0
+rect_min_size = Vector2( 400, 24 )
+size_flags_horizontal = 4
+size_flags_vertical = 4
+value = 100.0
+texture_under = ExtResource( 10 )
+texture_progress = ExtResource( 10 )
+tint_under = Color( 0, 0, 0, 1 )
+tint_progress = Color( 0.215686, 0.870588, 0.141176, 1 )
+nine_patch_stretch = true
+
+[node name="Tween" type="Tween" parent="UI/InfoBar/H/HP"]
+
+[node name="Control" type="Control" parent="UI/InfoBar/H"]
+margin_left = 1230.0
+margin_right = 1280.0
+margin_bottom = 60.0
+rect_min_size = Vector2( 50, 20 )
 
 [connection signal="pressed" from="UI/MarginContainer/HUD/GameControl/PausePlay" to="UI" method="_on_PausePlay_pressed"]
 [connection signal="pressed" from="UI/MarginContainer/HUD/GameControl/SpeedUp" to="UI" method="_on_SpeedUp_pressed"]

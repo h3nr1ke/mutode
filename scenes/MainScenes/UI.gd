@@ -1,5 +1,8 @@
 extends CanvasLayer
 
+onready var hp_bar = get_node("InfoBar/H/HP")
+onready var hp_bar_tween = get_node("InfoBar/H/HP/Tween")
+
 func set_tower_preview(tower_type, mouse_position):
 	# create the tower selector indicator
 	var tower_selector = load("res://scenes/UIScenes/TowerHighlight.tscn").instance()
@@ -36,6 +39,16 @@ func update_tower_preview(new_position, color):
 		drag_tower.modulate = _color
 		range_indicator.modulate = _color
 
+func update_health_bar(base_health):
+	hp_bar_tween.interpolate_property(hp_bar, 'value', hp_bar.value, base_health, 0.1, Tween.TRANS_LINEAR)
+	hp_bar_tween.start()
+	if base_health >= 60:  
+		hp_bar.set_tint_progress("37de24") #green
+	elif base_health > 60 and base_health <= 25:  
+		hp_bar.set_tint_progress("e1be32") #orange
+	else:		
+		hp_bar.set_tint_progress("e11e1e") #red
+
 # ----- SIGNALS -----
 func _on_PausePlay_pressed():
 	var parent = get_parent()
@@ -46,10 +59,10 @@ func _on_PausePlay_pressed():
 
 	if tree.is_paused():
 		tree.paused = false
-		parent.start_next_wave()
 	# call to start if the game was not started
-	#elif parent.current_wave == 0:
-		# parent.current_wave = 1
+	elif parent.current_wave == 0:
+		parent.current_wave = 1
+		parent.start_next_wave()
 	else:
 		tree.paused = true
 		

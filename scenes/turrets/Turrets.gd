@@ -2,6 +2,7 @@ extends Node2D
 
 var enemy_array = []
 var type 
+var category
 var built = false
 var enemy
 var ready = true
@@ -19,25 +20,37 @@ func select_enemy():
 
 func fire():
 	ready = false
+	if category == "Projectile":
+		fire_gun()
+	elif category == "Missile":
+		fire_missile()
+	
 	var tower_data = GameData.tower_data[type]
 	enemy.on_hit(tower_data["damage"])
 	yield(get_tree().create_timer(tower_data["rof"]),"timeout")
 	ready = true
-	
+
+func fire_gun():
+	get_node("AnimationPlayer").play("Fire")
+	pass
+
+func fire_missile():
+	pass	
 ## ----- Default functions -----
 func _physics_process(_delta):
 	if enemy_array.size() != 0 and built:
 		select_enemy()
-		turn()
+		## to prevent move turret before the animation end
+		if not get_node("AnimationPlayer").is_playing():
+			turn()
+			
 		if ready:
 			fire()
 	pass
 
 ## ----- SIGNALS -----
 func _on_Range_body_entered(body):
-	print(body)
 	enemy_array.append(body.get_parent())
 
 func _on_Range_body_exited(body):
-	print(body)
 	enemy_array.erase(body.get_parent())

@@ -20,7 +20,7 @@ script = ExtResource( 2 )
 position = Vector2( -2, 0 )
 shape = SubResource( 1 )
 
-[node name="Sprite" type="Sprite" parent="KinematicBody2D"]
+[node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
 
 [node name="HealthBar" type="TextureProgress" parent="."]
@@ -34,3 +34,6 @@ texture_progress = ExtResource( 3 )
 tint_under = Color( 0, 0, 0, 1 )
 tint_progress = Color( 0.188235, 0.615686, 0.0392157, 1 )
 nine_patch_stretch = true
+
+[node name="Impact" type="Position2D" parent="."]
+position = Vector2( -18, -18 )
